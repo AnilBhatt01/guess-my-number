@@ -1,50 +1,47 @@
-'use strict';
+"use strict";
 
-let secretNumber = Math.floor(Math.random() * 20 + 1);
-let score = 20;
+// console.log(document.querySelector(".input"));
+let chances = document.querySelector(".chances").textContent;
 
-function displayMessage(message) {
-  document.querySelector('.message').textContent = message;
-}
-function changeBackgroundColor(color) {
-  document.querySelector('body').style.backgroundColor = color;
-}
+document.querySelector(".highScore");
 
-document.querySelector('.check').addEventListener('click', () => {
-  const guess = Number(document.querySelector('.guess').value);
+let randomNumber = Math.floor(Math.random() * 20 + 1);
+console.log(randomNumber);
 
-  // When no input
+document.querySelector(".check").addEventListener("click", () => {
+  let inputValue = Number(document.querySelector(".input").value);
 
-  if (!guess) {
-    displayMessage('🙄 No number!');
-  }
-  // When guess is equal
-  else if (guess === secretNumber) {
-    displayMessage('🤩 Correct Number!');
-    document.querySelector('.number').textContent = secretNumber;
-    let highScore = document.querySelector('.highscore');
-    if (highScore.textContent < score) {
-      highScore.textContent = score;
+  if (!inputValue) {
+    document.querySelector(".result").textContent = "😶 No Value!";
+  } else if (inputValue === randomNumber) {
+    document.querySelector("body").style.backgroundColor = "green";
+    document.querySelector(".input").style.fontSize = "2rem";
+    document.querySelector(".number").textContent = randomNumber;
+    document.querySelector(".result").textContent = "🤩 Correct Answer";
+    document.querySelector(".highScore").textContent = chances;
+  } else if (inputValue !== randomNumber) {
+    chances--;
+    if (chances > 0) {
+      document.querySelector(".chances").textContent = chances;
+    } else {
+      document.querySelector(".chances").textContent = 0;
     }
-    changeBackgroundColor('#60b347');
-    document.querySelector('.number').style.width = '30rem';
 
-    // When guess is wrong
-  } else if (guess !== secretNumber) {
-    score--;
-    document.querySelector('.score').textContent = score;
-    guess > secretNumber
-      ? displayMessage('🚩 Too High!')
-      : displayMessage('🚩 Too Low!');
+    inputValue > randomNumber
+      ? (document.querySelector(".result").textContent = "👠Too High")
+      : (document.querySelector(".result").textContent = "🥿 Too Low");
+  }
+  if (chances <= 0) {
+    document.querySelector(".result").textContent = "😈 You Lost!";
   }
 });
 
-document.querySelector('.again').addEventListener('click', () => {
-  score = 20;
-  secretNumber = Math.floor(Math.random() * 20 + 1);
-  changeBackgroundColor('#222');
-  displayMessage('Start guessing...');
-  document.querySelector('.number').textContent = '?';
-  document.querySelector('.score').textContent = score;
-  document.querySelector('.guess').value = '';
+document.querySelector(".reset").addEventListener("click", () => {
+  randomNumber = Math.floor(Math.random() * 20 + 1);
+  document.querySelector(".number").textContent = "?";
+  document.querySelector(".input").value = "";
+  document.querySelector(".chances").textContent = 20;
+  chances = 20;
+  document.querySelector(".result").textContent = "";
+  document.querySelector("body").style.backgroundColor = "#565656";
 });
