@@ -2,31 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <title>Guess My Number!</title>
   </head>
   <body>
     <header>
-      <h1>Guess My Number!</h1>
-      <p class="between">(Between 1 and 20)</p>
-      <button class="btn again">Again!</button>
-      <div class="number">?</div>
+      <h1>Guess The Number</h1>
+      <p>(Number between 1 and 20)</p>
+      <p class="number">?</p>
     </header>
     <main>
-      <section class="left">
-        <input type="number" class="guess" />
-        <button class="btn check">Check!</button>
-      </section>
-      <section class="right">
-        <p class="message">Start guessing...</p>
-        <p class="label-score">💯 Score: <span class="score">20</span></p>
-        <p class="label-highscore">
-          🥇 Highscore: <span class="highscore">0</span>
-        </p>
-      </section>
+      <div class="input-container">
+        <input type="number" class="input" placeholder="Guess" />
+        <div>
+            <span>Chances:</span>
+             <span class="chances">20</span>
+        </div>
+        
+        <button class="check">Check</button>
+      </div>
+      <div>
+        <div>
+          <span>Result:</span>
+          <span class="result"></span>
+        </div>
+
+        <div>
+          <span>High-Score:</span>
+          <span class="highScore"></span>
+        </div>
+          <div>
+        <button class="reset">Reset</button>
+      </div>
+      </div>
+    
     </main>
-    <script src="script.js"></script>
+
+    <script src="app.js"></script>
   </body>
 </html>
